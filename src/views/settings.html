@@ -23,44 +23,24 @@
         </p>
     </div>
     <div ng-show="tab === 2">
-        <p class="pull-right">
-            <button class="btn" ng-click="CreateStage()">
-                <i class="icon-plus-sign-alt"></i>
-                Add new stage
-            </button>
-        </p>
-        <h1 ng-repeat-start="stage in stages" ng-if="stages">{{stage.name}}</h1>
+        <h1>Stages</h1>
         <table class="table table-hover table-bordered table-striped table-teams smallLayoutHide mediumLayoutHide">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Scores</th>
-                    <th>Order</th>
-                    <th>Move</th>
-                    <th>Delete</th>
+                    <th>Number of rounds</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="round in stage.$rounds">
-                    <td>{{round.name}}</td>
-                    <td>{{round.scores}}</td>
+                <tr ng-repeat="stage in allStages">
+                    <td>{{stage.name}}</td>
                     <td>
-                        <div class="icon-chevron-sign-down"/>
-                        <div class="icon-chevron-sign-up"/>
+                        <select ng-model="stage.rounds" ng-options="round.id as round.label for round in rounds" ng-change="stageChanged()">
+                        </select>
                     </td>
-                    <td>Move</td>
-                    <td>Delete</td>
                 </tr>
             </tbody>
         </table>
-        <p class="pull-right" >
-            <button class="btn" ng-click="CreateRound(stage)">
-                <i class="icon-plus-sign-alt"></i>
-                Add new round
-            </button>
-        </p>
-        <hr ng-repeat-end style="clear: both;"/>
-
     </div>
     <div ng-show="tab === 3">
         <p>
