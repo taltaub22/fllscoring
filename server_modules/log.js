@@ -2,7 +2,8 @@ var fs = require('fs');
 var path = require('path');
 var rotate = require('rotating-file-stream');
 
-const LOG_PATH = path.resolve(__dirname, '..', 'log', 'log.log');
+const today = new Date();
+const LOG_PATH = path.resolve(__dirname, '..', 'log', `log_${today.getDate()}-${today.getUTCMonth()+1}-${today.getUTCFullYear()}.log`);
 
 if (!fs.existsSync(path.dirname(LOG_PATH))) {
     fs.mkdirSync(path.dirname(LOG_PATH))
